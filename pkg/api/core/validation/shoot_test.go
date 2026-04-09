@@ -4084,6 +4084,7 @@ var _ = Describe("Shoot Validation Tests", func() {
 			expanderMostPods                    = core.ClusterAutoscalerExpanderMostPods
 			expanderPriority                    = core.ClusterAutoscalerExpanderPriority
 			expanderRandom                      = core.ClusterAutoscalerExpanderRandom
+			expanderLeastNodes                  = core.ClusterAutoscalerExpanderLeastNodes
 			expanderPriorityAndLeastWaste       = core.ClusterAutoscalerExpanderPriority + "," + core.ClusterAutoscalerExpanderLeastWaste
 			invalidExpander                     = core.ClusterAutoscalerExpanderPriority + ", test-expander"
 			invalidMultipleExpanderString       = core.ClusterAutoscalerExpanderPriority + ", " + core.ClusterAutoscalerExpanderLeastWaste
@@ -4139,6 +4140,9 @@ var _ = Describe("Shoot Validation Tests", func() {
 				}, version_1_31, BeEmpty()),
 				Entry("valid with expander random", core.ClusterAutoscaler{
 					Expander: &expanderRandom,
+				}, version_1_31, BeEmpty()),
+				Entry("valid with expander least nodes", core.ClusterAutoscaler{
+					Expander: &expanderLeastNodes,
 				}, version_1_31, BeEmpty()),
 				Entry("valid with startup taint", core.ClusterAutoscaler{
 					StartupTaints: taintsUnique,
